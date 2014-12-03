@@ -1,0 +1,24 @@
+#ifndef HardwareAbstraction_BasicArduino_h
+#define HardwareAbstraction_BasicArduino_h
+
+#include "AbstractController.h"
+
+
+namespace HardwareAbstraction {
+
+class BasicArduino : public AbstractController {
+
+ public:
+
+    virtual void digitalRead(Integer pin);
+
+    virtual void digitalWrite(Integer pin, Integer value);
+
+    virtual void analogRead(Integer pin);
+
+    virtual void analogWrite(Integer pin, Integer value);
+};
+
+} /* End of namespace HardwareAbstraction */
+
+#endif // HardwareAbstraction_BasicArduino_h

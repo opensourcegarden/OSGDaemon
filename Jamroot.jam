@@ -1,0 +1,20 @@
+
+lib system : : <file>libboost/lib/libboost_system.a <link>static ;
+lib thread : : <file>libboost/lib/libboost_thread.a <link>static ;
+lib regex : : <file>libboost/lib/libboost_regex.a <link>static ;
+lib filesystem : : <file>libboost/lib/libboost_filesystem.a <link>static ;
+lib date_time : : <file>libboost/lib/libboost_date_time.a <link>static ;
+lib unit_test_framework : : <file>libboost/lib/libboost_unit_test_framework.a <link>shared ;
+
+lib jsoncpp : : <include>/usr/include/jsoncpp ;
+lib pthread : : <name>pthread ;
+
+lib operations :  [ glob Operations/*.cpp ] : <include>/usr/include/jsoncpp <link>static ;
+lib hardware : [ glob HardwareAbstraction/*.cpp ] : <include>/usr/include/jsoncpp <link>static ;
+lib tcpserver : [ glob TcpServer/*.cpp ] : <include>/usr/include/jsoncpp/ <link>static ;
+
+lib tests : [ glob Operations/tests/*.cpp HardwareAbstraction/tests/*.cpp TcpServer/tests/*.cpp ] : <link>shared <include>/usr/include/jsoncpp/ ;
+
+exe osgd : main.cpp operations : <library>thread <library>system <include>/usr/include/jsoncpp ;
+
+exe osgdtest : [ glob /usr/include/jsoncpp/json/*.h ] jsoncpp tests tcpserver operations hardware unit_test_framework  : <include>/usr/include/jsoncpp <library>thread <library>system <library>pthread <library>regex <library>date_time <library>unit_test_framework ;

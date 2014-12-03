@@ -1,0 +1,13 @@
+#ifndef HardwareAbstraction_AbstractArduino_h
+#define HardwareAbstraction_AbstractArduino_h
+
+#include "AbstractController.h"
+
+
+namespace HardwareAbstraction {
+
+class AbstractArduino : public AbstractController, virtual public AbstractController {};
+
+} /* End of namespace HardwareAbstraction */
+
+#endif // HardwareAbstraction_AbstractArduino_h
